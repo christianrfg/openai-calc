@@ -85,25 +85,6 @@ if __name__ == '__main__':
         value=100_000
     )
 
-    # st.markdown('##')
-    # st.subheader("Choose Configurations")
-    # col1, col2 = st.columns(2)
-    # with col1:
-    #     num_requests = st.number_input(
-    #         label="Insert the number of requests:",
-    #         min_value=1,
-    #         value=100_000
-    #     )
-    # with col2:
-    #     options = st.multiselect(
-    #         "Select OpenAI models:",
-    #         options=[
-    #             "Ada", "Babbage", "Curie", "Davinci", "GPT-3.5-Turbo (4K context)",
-    #             "GPT-3.5-Turbo (8k context)", "GPT-4 (8K context)", "GPT-4 (32K context)"
-    #         ],
-    #         default=["Davinci", "GPT-3.5-Turbo (4K context)", "GPT-4 (8K context)"]
-    #     )
-
     # Results
     st.subheader("⭐ Estimated Values")
 
