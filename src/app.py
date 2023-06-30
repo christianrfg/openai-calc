@@ -26,6 +26,7 @@ Fedex
 Category: Delivery
 """.strip()
 
+
 if __name__ == '__main__':
     # Page configurations
     st.set_page_config(
