@@ -4,10 +4,14 @@ import streamlit as st
 import tiktoken
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.colored_header import colored_header
+from streamlit_extras.add_vertical_space import add_vertical_space
 
 from functions import get_price
 
-OPENAI_PROMPT_INPUT = """
+
+# Default prompt input
+DEFAULT_PROMPT_INPUT = """
 The following is a list of companies and the categories they fall into:
 
 Apple, Facebook, Fedex
@@ -16,7 +20,8 @@ Apple
 Category:
 """.strip()
 
-OPENAI_PROMPT_OUTPUT = """
+# Default prompt output
+DEFAULT_PROMPT_OUTPUT = """
 Technology
 
 Facebook
@@ -48,7 +53,7 @@ if __name__ == '__main__':
     )
 
     # Create buy me a coffee button
-    button(username="fake-username")
+    button(username="chgomes")
 
     # Set style for metric cards
     style_metric_cards(border_left_color="#185ccd")
@@ -63,19 +68,25 @@ if __name__ == '__main__':
     )
 
     # OpenAI Input & Output
-    st.subheader("⚙️ Specify Your Configurations")
+    add_vertical_space(1)
+    colored_header(
+        label="⚙️ Specify Your Configurations",
+        description='',
+        color_name="blue-70"
+    )
+    add_vertical_space(1)
 
     col1, col2 = st.columns(2)
     with col1:
         prompt_input = st.text_area(
             label='Insert your prompt input:',
-            value=OPENAI_PROMPT_INPUT,
+            value=DEFAULT_PROMPT_INPUT,
             height=200
         )
     with col2:
         prompt_output = st.text_area(
             label='Insert the expected prompt output:',
-            value=OPENAI_PROMPT_OUTPUT,
+            value=DEFAULT_PROMPT_OUTPUT,
             height=200,
             help="You can set this manually or generate with the input in OpenAI."
         )
@@ -87,7 +98,13 @@ if __name__ == '__main__':
     )
 
     # Results
-    st.subheader("⭐ Estimated Values")
+    add_vertical_space(2)
+    colored_header(
+        label="⭐ Estimated Values",
+        description='',
+        color_name="blue-70"
+    )
+    add_vertical_space(1)
 
     # Get number of tokens in input, output and the total of tokens
     encoding = tiktoken.get_encoding("cl100k_base")
@@ -122,7 +139,7 @@ if __name__ == '__main__':
     gpt4_32k_price = get_price_partial(price_input=.06, price_output=.12)
 
     # Display model's prices
-    st.markdown('##')
+    add_vertical_space(1)
     st.markdown("Price for each OpenAI model:")
     col1, col2, col3, col4 = st.columns(4)
     col1.metric(label="Ada", value=f"${ada_price:.2f}")
